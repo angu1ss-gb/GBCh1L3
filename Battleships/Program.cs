@@ -67,11 +67,7 @@ namespace Battleships
                 {"! You won!", null},
             });
             Console.WriteLine();
-
-            // PrintFields(playerOneShips, playerOneTargets);
-            // Console.WriteLine();
-            // PrintFields(playerTwoShips, playerTwoTargets);
-
+            
             // User-friendly app finish
             Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
@@ -216,6 +212,8 @@ namespace Battleships
                     // In case next col on ship's row is busy restart ship align
                     if (1 == field[rStart, cStart + shipSize])
                         return PlaceShip(shipSize, field);
+                
+                // TODO: Add diagonals check
 
                 // Place ship
                 for (int j = cStart; j < cStart + shipSize; j++)
@@ -243,6 +241,8 @@ namespace Battleships
                     // In case next row on ship's col is busy restart ship align
                     if (1 == field[rStart + shipSize, cStart])
                         return PlaceShip(shipSize, field);
+                
+                // TODO: Add diagonals check
 
                 // Place ship
                 for (int i = rStart; i < rStart + shipSize; i++)
