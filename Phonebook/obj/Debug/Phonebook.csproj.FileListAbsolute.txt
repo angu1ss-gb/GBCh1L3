@@ -1,0 +1,6 @@
+P:\personal\rider\GBCh1L3\Phonebook\bin\Debug\Phonebook.exe
+P:\personal\rider\GBCh1L3\Phonebook\bin\Debug\Phonebook.pdb
+P:\personal\rider\GBCh1L3\Phonebook\obj\Debug\Phonebook.csprojAssemblyReference.cache
+P:\personal\rider\GBCh1L3\Phonebook\obj\Debug\Phonebook.csproj.CoreCompileInputs.cache
+P:\personal\rider\GBCh1L3\Phonebook\obj\Debug\Phonebook.exe
+P:\personal\rider\GBCh1L3\Phonebook\obj\Debug\Phonebook.pdb

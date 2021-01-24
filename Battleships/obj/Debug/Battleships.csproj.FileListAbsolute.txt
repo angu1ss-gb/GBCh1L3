@@ -1,0 +1,6 @@
+P:\personal\rider\GBCh1L3\Battleships\bin\Debug\Battleships.exe
+P:\personal\rider\GBCh1L3\Battleships\bin\Debug\Battleships.pdb
+P:\personal\rider\GBCh1L3\Battleships\obj\Debug\Battleships.csprojAssemblyReference.cache
+P:\personal\rider\GBCh1L3\Battleships\obj\Debug\Battleships.csproj.CoreCompileInputs.cache
+P:\personal\rider\GBCh1L3\Battleships\obj\Debug\Battleships.exe
+P:\personal\rider\GBCh1L3\Battleships\obj\Debug\Battleships.pdb

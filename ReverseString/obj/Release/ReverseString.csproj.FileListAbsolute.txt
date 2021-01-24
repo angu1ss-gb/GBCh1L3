@@ -1,0 +1,6 @@
+P:\personal\rider\GBCh1L3\ReverseString\bin\Release\ReverseString.exe
+P:\personal\rider\GBCh1L3\ReverseString\bin\Release\ReverseString.pdb
+P:\personal\rider\GBCh1L3\ReverseString\obj\Release\ReverseString.csprojAssemblyReference.cache
+P:\personal\rider\GBCh1L3\ReverseString\obj\Release\ReverseString.csproj.CoreCompileInputs.cache
+P:\personal\rider\GBCh1L3\ReverseString\obj\Release\ReverseString.exe
+P:\personal\rider\GBCh1L3\ReverseString\obj\Release\ReverseString.pdb

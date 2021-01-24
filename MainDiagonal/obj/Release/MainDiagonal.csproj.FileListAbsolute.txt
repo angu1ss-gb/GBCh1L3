@@ -1,0 +1,6 @@
+P:\personal\rider\GBCh1L3\MainDiagonal\bin\Release\MainDiagonal.exe
+P:\personal\rider\GBCh1L3\MainDiagonal\bin\Release\MainDiagonal.pdb
+P:\personal\rider\GBCh1L3\MainDiagonal\obj\Release\MainDiagonal.csprojAssemblyReference.cache
+P:\personal\rider\GBCh1L3\MainDiagonal\obj\Release\MainDiagonal.csproj.CoreCompileInputs.cache
+P:\personal\rider\GBCh1L3\MainDiagonal\obj\Release\MainDiagonal.exe
+P:\personal\rider\GBCh1L3\MainDiagonal\obj\Release\MainDiagonal.pdb

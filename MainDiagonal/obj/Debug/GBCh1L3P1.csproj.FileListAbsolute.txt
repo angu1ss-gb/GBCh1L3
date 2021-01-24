@@ -1,0 +1,6 @@
+P:\personal\rider\GBCh1L3\GBCh1L3P1\bin\Debug\GBCh1L3P1.exe
+P:\personal\rider\GBCh1L3\GBCh1L3P1\bin\Debug\GBCh1L3P1.pdb
+P:\personal\rider\GBCh1L3\GBCh1L3P1\obj\Debug\GBCh1L3P1.csprojAssemblyReference.cache
+P:\personal\rider\GBCh1L3\GBCh1L3P1\obj\Debug\GBCh1L3P1.csproj.CoreCompileInputs.cache
+P:\personal\rider\GBCh1L3\GBCh1L3P1\obj\Debug\GBCh1L3P1.exe
+P:\personal\rider\GBCh1L3\GBCh1L3P1\obj\Debug\GBCh1L3P1.pdb
