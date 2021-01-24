@@ -166,13 +166,13 @@ namespace Battleships
                 field = PlaceShip(1, field);
                 field = PlaceShip(1, field);
                 field = PlaceShip(1, field);
+                
+                return field;
             }
             catch (IndexOutOfRangeException e)
             {
-                CreateBattleshipField(ZeroTwoDimMatrix(10, 10));
+                return CreateBattleshipField(ZeroTwoDimMatrix(10, 10));
             }
-            
-            return field;
         }
 
         static UInt16[,] PlaceShip(UInt16 shipSize, UInt16[,] field)
