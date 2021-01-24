@@ -20,11 +20,11 @@ namespace Battleships
     {
         private static Boolean _playerOneWon;
         private static Boolean _playerTwoWon;
-        
+
         public static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            
+
             Boolean readyPlayerOne = true;
 
             UInt16[,] playerOneShips = CreateBattleshipField(ZeroTwoDimMatrix(10, 10));
@@ -43,7 +43,7 @@ namespace Battleships
                     {readyPlayerOne ? "one" : "two", ConsoleColor.DarkCyan},
                 });
                 Console.WriteLine();
-                
+
                 CheckReady();
 
                 if (readyPlayerOne)
@@ -67,7 +67,7 @@ namespace Battleships
                 {"! You won!", null},
             });
             Console.WriteLine();
-            
+
             // User-friendly app finish
             Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
@@ -166,7 +166,7 @@ namespace Battleships
                 field = PlaceShip(1, field);
                 field = PlaceShip(1, field);
                 field = PlaceShip(1, field);
-                
+
                 return field;
             }
             catch (IndexOutOfRangeException e)
@@ -177,9 +177,11 @@ namespace Battleships
 
         static UInt16[,] PlaceShip(UInt16 shipSize, UInt16[,] field)
         {
-            UInt16 isVert = SRandom.Next(1, 2); // `1` -- horizontal; `2` -- vertical
-            UInt16 cStart = (1 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
-            UInt16 rStart = (2 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
+            UInt16 isVert = SRandom.Next(1, 100) > 50 ? 0 == SRandom.Next(1, 100) % 2 ? (UInt16) 0 :
+                (UInt16) 1 : 0 == SRandom.Next(1, 100) % 2 ? (UInt16) 1 : (UInt16) 0;
+
+            UInt16 cStart = (0 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
+            UInt16 rStart = (1 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
 
             // In case start position is busy restart ship align
             if (1 == field[rStart, cStart])
@@ -196,13 +198,13 @@ namespace Battleships
                 // In case start row on previous col is busy restart ship align
                 if (1 == field[rStart, cStart - 1])
                     return PlaceShip(shipSize, field);
-            
+
             // Left up diagonal check
             if (0 != rStart && 0 != cStart)
                 if (1 == field[rStart - 1, cStart - 1])
                     return PlaceShip(shipSize, field);
 
-            if (1 == isVert) // Horizontal
+            if (0 == isVert) // Horizontal
             {
                 for (int j = cStart; j < cStart + shipSize; j++)
                 {
@@ -224,10 +226,10 @@ namespace Battleships
                     // In case next col on ship's row is busy restart ship align
                     if (1 == field[rStart, cStart + shipSize])
                         return PlaceShip(shipSize, field);
-                
+
                 // Left down diagonal check
                 if (9 != rStart && 0 != cStart)
-                    if(1 == field[rStart + 1, cStart - 1])
+                    if (1 == field[rStart + 1, cStart - 1])
                         return PlaceShip(shipSize, field);
                 // Right up diagonal check
                 if (0 != rStart && 10 != cStart + shipSize)
@@ -264,10 +266,10 @@ namespace Battleships
                     // In case next row on ship's col is busy restart ship align
                     if (1 == field[rStart + shipSize, cStart])
                         return PlaceShip(shipSize, field);
-                
+
                 // Left down diagonal check
                 if (10 != rStart + shipSize && 0 != cStart)
-                    if(1 == field[rStart + shipSize + 1, cStart - 1])
+                    if (1 == field[rStart + shipSize + 1, cStart - 1])
                         return PlaceShip(shipSize, field);
                 // Right up diagonal check
                 if (0 != rStart && 9 != cStart)
@@ -280,7 +282,7 @@ namespace Battleships
 
                 // Place ship
                 for (int i = rStart; i < rStart + shipSize; i++)
-                    field[i, cStart] = 2;
+                    field[i, cStart] = 1;
             }
 
             return field;
@@ -312,38 +314,43 @@ namespace Battleships
                 {PadBoth("I", 3), ConsoleColor.DarkCyan},
                 {PadBoth("J", 3), ConsoleColor.DarkCyan},
             };
-            
+
             // Clear Console
             Console.Clear();
-            
+
             // Print legend
             Console.WriteLine("Legend:");
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
             {
                 {PadBoth("", 3), null},
                 {" -- Unknown", null},
-            }); Console.WriteLine();
+            });
+            Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
             {
                 {PadBoth("~", 3), null},
                 {" -- Clear water", null},
-            }); Console.WriteLine();
+            });
+            Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
             {
                 {PadBoth("[ ]", 3), ConsoleColor.DarkGreen},
                 {" -- Player ships", null},
-            }); Console.WriteLine();
+            });
+            Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
             {
                 {PadBoth("[X]", 3), ConsoleColor.DarkRed},
                 {" -- Hits/Destroyed ships", null},
-            }); Console.WriteLine();
+            });
+            Console.WriteLine();
             ColorfulWrite(new Dictionary<object, ConsoleColor?>()
             {
                 {PadBoth("O", 3), null},
                 {" -- Miss", null},
-            }); Console.WriteLine();
-            
+            });
+            Console.WriteLine();
+
             Console.WriteLine();
 
             // Print letters for ships
@@ -463,7 +470,7 @@ namespace Battleships
         {
             // Print user's ships and targets screens
             PrintFields(myShips, myTargets);
-            
+
             // Get shot coordinates
             UInt16[] shot = GetShotCoordinates();
 
@@ -479,7 +486,7 @@ namespace Battleships
             {
                 myTargets[shot[0], shot[1]] = 2;
                 otherPlayerShips[shot[0], shot[1]] = 2;
-                
+
                 // Check for wining
                 if (IsWin(otherPlayerShips))
                     return;
@@ -491,7 +498,7 @@ namespace Battleships
             {
                 myTargets[shot[0], shot[1]] = 3;
                 otherPlayerShips[shot[0], shot[1]] = 3;
-                
+
                 ColorfulWrite(new Dictionary<object, ConsoleColor?>()
                 {
                     {"You ", null},
