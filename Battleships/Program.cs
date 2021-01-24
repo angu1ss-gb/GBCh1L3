@@ -147,32 +147,39 @@ namespace Battleships
 
         static UInt16[,] CreateBattleshipField(UInt16[,] field)
         {
-            // Add 1 ship with size 4
-            field = PlaceShip(4, field);
+            try
+            {
+                // Add 1 ship with size 4
+                field = PlaceShip(4, field);
 
-            // Add 2 ships with size 3
-            field = PlaceShip(3, field);
-            field = PlaceShip(3, field);
+                // Add 2 ships with size 3
+                field = PlaceShip(3, field);
+                field = PlaceShip(3, field);
 
-            // Add 3 ships with size 2
-            field = PlaceShip(2, field);
-            field = PlaceShip(2, field);
-            field = PlaceShip(2, field);
+                // Add 3 ships with size 2
+                field = PlaceShip(2, field);
+                field = PlaceShip(2, field);
+                field = PlaceShip(2, field);
 
-            // Add 4 ships with size 1
-            field = PlaceShip(1, field);
-            field = PlaceShip(1, field);
-            field = PlaceShip(1, field);
-            field = PlaceShip(1, field);
-
+                // Add 4 ships with size 1
+                field = PlaceShip(1, field);
+                field = PlaceShip(1, field);
+                field = PlaceShip(1, field);
+                field = PlaceShip(1, field);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                CreateBattleshipField(ZeroTwoDimMatrix(10, 10));
+            }
+            
             return field;
         }
 
         static UInt16[,] PlaceShip(UInt16 shipSize, UInt16[,] field)
         {
-            UInt16 isVert = SRandom.Next(0, 1); // `0` -- horizontal; `1` -- vertical
-            UInt16 cStart = (0 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
-            UInt16 rStart = (1 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
+            UInt16 isVert = SRandom.Next(1, 2); // `1` -- horizontal; `2` -- vertical
+            UInt16 cStart = (1 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
+            UInt16 rStart = (2 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
 
             // In case start position is busy restart ship align
             if (1 == field[rStart, cStart])
@@ -189,8 +196,13 @@ namespace Battleships
                 // In case start row on previous col is busy restart ship align
                 if (1 == field[rStart, cStart - 1])
                     return PlaceShip(shipSize, field);
+            
+            // Left up diagonal check
+            if (0 != rStart && 0 != cStart)
+                if (1 == field[rStart - 1, cStart - 1])
+                    return PlaceShip(shipSize, field);
 
-            if (0 == isVert) // Horizontal
+            if (1 == isVert) // Horizontal
             {
                 for (int j = cStart; j < cStart + shipSize; j++)
                 {
@@ -213,7 +225,18 @@ namespace Battleships
                     if (1 == field[rStart, cStart + shipSize])
                         return PlaceShip(shipSize, field);
                 
-                // TODO: Add diagonals check
+                // Left down diagonal check
+                if (9 != rStart && 0 != cStart)
+                    if(1 == field[rStart + 1, cStart - 1])
+                        return PlaceShip(shipSize, field);
+                // Right up diagonal check
+                if (0 != rStart && 10 != cStart + shipSize)
+                    if (1 == field[rStart - 1, cStart + shipSize + 1])
+                        return PlaceShip(shipSize, field);
+                // Right down diagonal check
+                if (9 != rStart && 10 != cStart + shipSize)
+                    if (1 == field[rStart + 1, cStart + shipSize + 1])
+                        return PlaceShip(shipSize, field);
 
                 // Place ship
                 for (int j = cStart; j < cStart + shipSize; j++)
@@ -242,7 +265,18 @@ namespace Battleships
                     if (1 == field[rStart + shipSize, cStart])
                         return PlaceShip(shipSize, field);
                 
-                // TODO: Add diagonals check
+                // Left down diagonal check
+                if (10 != rStart + shipSize && 0 != cStart)
+                    if(1 == field[rStart + shipSize + 1, cStart - 1])
+                        return PlaceShip(shipSize, field);
+                // Right up diagonal check
+                if (0 != rStart && 9 != cStart)
+                    if (1 == field[rStart - 1, cStart + 1])
+                        return PlaceShip(shipSize, field);
+                // Right down diagonal check
+                if (10 != rStart + shipSize && 9 != cStart)
+                    if (1 == field[rStart + shipSize + 1, cStart + 1])
+                        return PlaceShip(shipSize, field);
 
                 // Place ship
                 for (int i = rStart; i < rStart + shipSize; i++)
