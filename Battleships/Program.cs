@@ -177,11 +177,10 @@ namespace Battleships
 
         static UInt16[,] PlaceShip(UInt16 shipSize, UInt16[,] field)
         {
-            UInt16 isVert = SRandom.Next(1, 100) > 50 ? 0 == SRandom.Next(1, 100) % 2 ? (UInt16) 0 :
-                (UInt16) 1 : 0 == SRandom.Next(1, 100) % 2 ? (UInt16) 1 : (UInt16) 0;
+            Boolean isVert = SRandom.Next(1, 100) > 50;
 
-            UInt16 cStart = (0 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
-            UInt16 rStart = (1 == isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
+            UInt16 cStart = (isVert) ? SRandom.Next(0, 9) : SRandom.Next(0, 10 - shipSize);
+            UInt16 rStart = (isVert) ? SRandom.Next(0, 10 - shipSize) : SRandom.Next(0, 9);
 
             // In case start position is busy restart ship align
             if (1 == field[rStart, cStart])
@@ -204,7 +203,7 @@ namespace Battleships
                 if (1 == field[rStart - 1, cStart - 1])
                     return PlaceShip(shipSize, field);
 
-            if (0 == isVert) // Horizontal
+            if (!isVert) // Horizontal
             {
                 for (int j = cStart; j < cStart + shipSize; j++)
                 {
